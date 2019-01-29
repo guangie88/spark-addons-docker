@@ -4,6 +4,10 @@ ARG SPARK_VERSION
 FROM guangie88/spark:${SPARK_VERSION}_java-${JAVA_MAJOR_VERSION}_debian
 
 RUN set -xeu; \
+    # Build-time only deps
+    apt-get update; \
+    apt-get install -y --no-install-recommends \
+        wget; \
     # Check https://github.com/apache/hadoop/blob/release-2.7.7-RC0/hadoop-project/pom.xml#L658
     # to see the aws-java-sdk version to be used
     # AWS S3 JARs
